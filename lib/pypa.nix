@@ -292,7 +292,9 @@ lib.fix (self: {
             (arch == "universal2" && (platform.darwinArch == "arm64" || platform.darwinArch == "x86_64"))
             || arch == platform.darwinArch
           )
-          && compareVersions platform.darwinSdkVersion "${major}.${minor}" >= 0
+          # Hack!  What would be a clean way to do this, without rebuilding all
+          # of nixpkgs?
+          && compareVersions "15" "${major}.${minor}" >= 0
         )
       )
     else if platformTag == "win32" then
